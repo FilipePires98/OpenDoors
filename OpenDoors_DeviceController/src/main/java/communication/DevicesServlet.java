@@ -26,15 +26,15 @@ public class DevicesServlet {
     
     public DevicesServlet(){
         devices.put(1l, new String[]{
-            "http://192.168.11.207:8081/light/luzteste/switch/on",
-            "http://192.168.11.207:8081/light/luzteste/switch/off",
-            "http://192.168.11.207:8081/light/luzteste/luminosity/",
-            "http://192.168.11.207:8081/light/luzteste/color/"});
+            "http://deti-engsoft-01.ua.pt:8081/light/luzteste/switch/on",
+            "http://deti-engsoft-01.ua.pt:8081/light/luzteste/switch/off",
+            "http://deti-engsoft-01.ua.pt:8081/light/luzteste/luminosity/",
+            "http://deti-engsoft-01.ua.pt:8081/light/luzteste/color/"});
         devices.put(2l, new String[]{
-            "http://localhost:4000/VirtualLight-1.0/light/on",
-            "http://localhost:4000/VirtualLight-1.0/light/off",
-            "http://localhost:4000/VirtualLight-1.0/light/luminosity/",
-            "http://localhost:4000/VirtualLight-1.0/light/color/"
+            "http://deti-engsoft-09.ua.pt:4000/VirtualLight-1.0/light/on",
+            "http://deti-engsoft-09.ua.pt:4000/VirtualLight-1.0/light/off",
+            "http://deti-engsoft-09.ua.pt:4000/VirtualLight-1.0/light/luminosity/",
+            "http://deti-engsoft-09.ua.pt:4000/VirtualLight-1.0/light/color/"
         });
     }
     
@@ -92,7 +92,7 @@ public class DevicesServlet {
     @Path("/airconditioner/on")
     public JSONObject turnOnTemperature() throws MalformedURLException {
         JSONObject response = ClientBuilder.newClient()
-                .target(URI.create(new URL("http://localhost:8000/AirConditioner-1.0/airconditioner/on").toExternalForm()))
+                .target(URI.create(new URL("http://deti-engsoft-09.ua.pt:8000/AirConditioner-1.0/airconditioner/on").toExternalForm()))
                 .request(MediaType.APPLICATION_JSON)
                 .get(JSONObject.class);
         return response;
@@ -102,7 +102,7 @@ public class DevicesServlet {
     @Path("/airconditioner/off")
     public JSONObject turnOffTemperature() throws MalformedURLException {
         JSONObject response = ClientBuilder.newClient()
-                .target(URI.create(new URL("http://localhost:8000/AirConditioner-1.0/airconditioner/off").toExternalForm()))
+                .target(URI.create(new URL("http://deti-engsoft-09.ua.pt:8000/AirConditioner-1.0/airconditioner/off").toExternalForm()))
                 .request(MediaType.APPLICATION_JSON)
                 .get(JSONObject.class);
         return response;
@@ -112,7 +112,7 @@ public class DevicesServlet {
     @Path("/airconditioner/regulate")
     public JSONObject regulateTemperature(@QueryParam("temperature") double temperature) throws MalformedURLException {
         JSONObject response = ClientBuilder.newClient()
-                .target(URI.create(new URL("http://localhost:8000/AirConditioner-1.0/airconditioner/regulate/"+temperature).toExternalForm()))
+                .target(URI.create(new URL("http://deti-engsoft-09.ua.pt:8000/AirConditioner-1.0/airconditioner/regulate/"+temperature).toExternalForm()))
                 .request(MediaType.APPLICATION_JSON)
                 .get(JSONObject.class);
         return response;
@@ -122,7 +122,7 @@ public class DevicesServlet {
     @Path("/airconditioner/getValue")
     public JSONObject getTemperature() throws MalformedURLException {
         JSONObject response = ClientBuilder.newClient()
-                .target(URI.create(new URL("http://localhost:8000/AirConditioner-1.0/airconditioner/getValue").toExternalForm()))
+                .target(URI.create(new URL("http://deti-engsoft-09.ua.pt:8000/AirConditioner-1.0/airconditioner/getValue").toExternalForm()))
                 .request(MediaType.APPLICATION_JSON)
                 .get(JSONObject.class);
         return response;
