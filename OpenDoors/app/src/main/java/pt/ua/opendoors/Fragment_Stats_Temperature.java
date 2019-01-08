@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +42,10 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
 
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+
+    DateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy");
+    Date date = new Date();
+
     private LineChart mChar;
     TextView tvBegin;
     TextView tvEnd;
@@ -69,7 +74,7 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         tvBegin.setText(hourOfDay+":"+minutes);
-                        String dateBegin = "12-12-2018 "+tvBegin.getText()+":00";
+                        String dateBegin = dateFormat.format(date)+" "+tvBegin.getText()+":00";
                         Date dateB = null;
                         try {
                             dateB = sdf.parse(dateBegin);
@@ -100,7 +105,7 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         tvEnd.setText(hourOfDay+":"+minutes);
-                        String dateEnd = "12-12-2018 "+tvEnd.getText()+":00";
+                        String dateEnd = dateFormat.format(date)+" "+tvEnd.getText()+":00";
                         Date dateE = null;
                         try {
                             dateE = sdf.parse(dateEnd);
@@ -143,7 +148,7 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
 
     private void sendNetworkRequest(String dfp) {
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://192.168.11.68:8080/OpenDoors_Persistence-1.0/regist/")
+                .baseUrl("http://deti-engsoft-07.ua.pt:8081/OpenDoors_Persistence-1.0/regist/")
                 .addConverterFactory(ScalarsConverterFactory.create());
 
 
@@ -167,7 +172,6 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
                         yValues.add(new Entry( i, (int) temperature.get(i) ));
                     }
 
-                    Log.d("sdsdf", yValues.toString());
 
                     LineDataSet set1 = new LineDataSet(yValues, "Variação da Temperatura ao longo do tempo");
 
@@ -188,6 +192,8 @@ public class Fragment_Stats_Temperature extends Fragment implements TimePickerDi
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Nothing to Show :(", Toast.LENGTH_SHORT).show();
+                    mChar.setVisibility(View.INVISIBLE);
                 }
             }
 

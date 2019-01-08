@@ -28,7 +28,7 @@ public class Fragment_Livestream extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         getActivity().setTitle("LiveStream");
-        View view = inflater.inflate(R.layout.fragment_stats,container, false);
+        View view = inflater.inflate(R.layout.fragment_livestream,container, false);
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);

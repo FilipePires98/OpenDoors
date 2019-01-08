@@ -10,4 +10,19 @@
     <string name="controls">Controls</string>
     <string name="main_page">Main Page</string>
     <string name="livestream">LiveStream</string>
+    <string name="employees">Employees</string>
+
+    <string-array name="chooseOption">
+        <item>Your Choice</item>
+        <item>Day</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
+
+    <string-array name="chooseYear">
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+    </string-array>
+
 </resources>

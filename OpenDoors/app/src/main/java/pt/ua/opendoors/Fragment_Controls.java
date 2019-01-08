@@ -132,7 +132,7 @@ public class Fragment_Controls extends Fragment implements CompoundButton.OnChec
             public void onClick(View v)
             {
 
-                String URL = "http://192.168.11.68:8080/OpenDoors_DeviceController-1.0/devices/temperature/regulate?temperature="+bsbTemperature.getProgress();
+                String URL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/airconditioner/regulate?temperature="+bsbTemperature.getProgress();
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                 JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
@@ -157,10 +157,10 @@ public class Fragment_Controls extends Fragment implements CompoundButton.OnChec
         buttonL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String URL = "http://192.168.11.68:8080/OpenDoors_DeviceController-1.0/devices/light/2/regulate?temperature="+bsbLTemperature.getProgress()+"&intensity="+bsbLIntensity.getProgress();
+                String URLL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/light/1/luminosity/"+bsbLIntensity.getProgress();
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URLL, null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -174,6 +174,24 @@ public class Fragment_Controls extends Fragment implements CompoundButton.OnChec
                             }
                         });
                 requestQueue.add(objectRequest);
+
+                String URLC = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/light/1/color/"+bsbLTemperature.getProgress();
+
+                JsonObjectRequest objectRequest1 = new JsonObjectRequest(Request.Method.GET, URLC, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Toast.makeText(getActivity(),"Light adjusted successfully",Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getActivity(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                requestQueue.add(objectRequest1);
+
             }
         });
 
@@ -183,23 +201,97 @@ public class Fragment_Controls extends Fragment implements CompoundButton.OnChec
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         if (switchTemperature.isChecked()) {
-            switchTemperature.setText("OFF");
-            bsbTemperature.setEnabled(false);
-            buttonRT.setVisibility(View.INVISIBLE);
-        } else if (!switchTemperature.isChecked()) {
             switchTemperature.setText("ON");
             bsbTemperature.setEnabled(true);
+            buttonRT.setVisibility(View.INVISIBLE);
+            /*String URLL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/airconditioner/on";
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URLL, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(getActivity(),"AirConditioner ON",Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            requestQueue.add(objectRequest);*/
+
+        } else if (!switchTemperature.isChecked()) {
+            switchTemperature.setText("OFF");
+            bsbTemperature.setEnabled(false);
+
+            /*String URLL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/airconditioner/off";
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URLL, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(getActivity(),"Air Conditioner Off",Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            requestQueue.add(objectRequest);*/
         }
         if (switchLight.isChecked()) {
+            switchLight.setText("ON");
+            bsbLIntensity.setEnabled(true);
+            bsbLTemperature.setEnabled(true);
+
+            String URLL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/light/1/on";
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URLL, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(getActivity(),"Light ON",Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            requestQueue.add(objectRequest);
+
+        } else if (!switchLight.isChecked()) {
             switchLight.setText("OFF");
             bsbLTemperature.setEnabled(false);
             bsbLIntensity.setEnabled(false);
             buttonRL.setVisibility(View.INVISIBLE);
             flag = false;
-        } else if (!switchLight.isChecked()) {
-            switchLight.setText("ON");
-            bsbLIntensity.setEnabled(true);
-            bsbLTemperature.setEnabled(true);
+
+            String URLL = "http://deti-engsoft-09.ua.pt:8080/OpenDoors_DeviceController-1.0/devices/light/1/off";
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URLL, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(getActivity(),"Light Off",Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            requestQueue.add(objectRequest);
+
         }
     }
 

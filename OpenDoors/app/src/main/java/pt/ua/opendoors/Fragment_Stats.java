@@ -47,7 +47,6 @@ public class Fragment_Stats extends Fragment {
 
         adapter.addFragment(new Fragment_Stats_Temperature(), "Temperature");
         adapter.addFragment(new Fragment_Stats_Lights(), "Lights");
-        adapter.addFragment(new Fragment_Stats_Employees(), "Employees");
         adapter.addFragment(new Fragment_Stats_Clients(), "Clients");
 
         viewPager.setAdapter(adapter);

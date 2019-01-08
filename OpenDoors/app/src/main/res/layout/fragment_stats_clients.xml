@@ -7,17 +7,118 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+    <Button
+        android:id="@+id/draw"
+        android:layout_width="64dp"
+        android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Clients"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bottomshape"
+        android:text="Draw"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectText" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/clientGraph"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/draw"
+        app:layout_constraintVertical_bias="0.68">
+
+
+    </com.github.mikephil.charting.charts.LineChart>
+
+    <TextView
+        android:id="@+id/selectText"
+        android:layout_width="181dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/select"
+        app:layout_constraintStart_toEndOf="@+id/select" />
+
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:text="Select: "
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseOption" />
+
+    <ImageButton
+    android:id="@+id/selectIcon"
+    android:layout_width="29dp"
+    android:layout_height="27dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@color/white"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.125"
+    app:layout_constraintStart_toEndOf="@+id/selectText"
+    app:layout_constraintTop_toTopOf="@+id/selectText"
+    app:srcCompat="@drawable/ic_event_available_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/selectIcon2"
+        android:layout_width="29dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toEndOf="@+id/selectText"
+        app:layout_constraintTop_toTopOf="@+id/selectText"
+        app:srcCompat="@drawable/ic_event_available_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:text="Chose a option:"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/chooseOption"
+        android:layout_width="294dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
 </android.support.constraint.ConstraintLayout>

@@ -26,7 +26,7 @@
             app:tabSelectedTextColor="@color/colorPrimary"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabTextAppearance="@style/MineCustomTabText"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             app:tabGravity="center"
             android:layout_gravity="center_horizontal"/>
     </android.support.design.widget.AppBarLayout>
