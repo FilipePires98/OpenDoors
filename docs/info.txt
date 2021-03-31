@@ -1,0 +1,177 @@
+--------------------- Final Presentations ------------------
+
+F - UI and user stories			(show how the end user benefits from the use of our system)
+A - api (integration, extension)	(description of the structure of the api and what we provide for any entity that desires to use it)
+A - microservices (modularity)		(explain modulation and different docker containers division)
+M - online (streaming) 			(showing real-time manipulation of the sensors viewed in the app)
+F - operations on streams		(how are kstreams being used)
+Q - review (explore history)		(showing historical values)
+S - cyber-physical 			(which sensors, what do they do, how do they communicate)
+
+
+(order doesn't need to be this one)
+
+10-15min
+
+expectation: telling a story
+
+for labs: small individual interviews to explain the whole concept
+
+---------------------- KStreams Topics ---------------------
+
+24sensors-data: 
+- raw data from sensors
+
+24light: 
+- show the evolution of the light levels inside the store in real-time
+loja:{visible:value, infrared:value, time:value}
+
+24temperature: 
+- show the evolution of the temperature inside the store in real-time
+loja:{temperature:value, time:value}
+
+24client: 
+- show the flow of clients entering the store in real-time
+loja:{moved:1, time:value}
+
+24sit_employee: 
+- check if employee has been sitting for too long
+loja+"-"+id:{sitted:value, time:value}
+
+24sit_client: 
+- check if client has reached the maximum usage time of the store's pcs
+loja+"-"+id:{sitted:value, time:value}
+
+24avg_temperature:
+- show current temperature average
+loja:{average:value, time:value}
+
+24avg_light:
+- show current light intensity average
+loja:{average:visible_value, time:value}
+
+24count_client:
+- show how many clients have entered the store
+loja:{count:value, time:value}
+
+24count_sit_employee:
+- show how many hours have all employees been sitting in real-time
+loja+"-"+id:{sum:value, time:value}
+
+24count_sit_client: 
+- show how many hours have all clients been sitting in real-time
+loja+"-"+id:{sum:value, time:value}
+
+24alerts:
+- check if client is the 100th of the day
+loja:{event:description, (client/employee:value), time:value}
+
+----------------- REST Paths & JSON Formats -----------------
+
+Notas:	status:0 <=> status:"ok"
+	data_type: 1=light, 2=temperature, 3=client entering, 4=sitting
+
+Luminosidade:
+-regulate			POST	"/sensor/temperature/regulate"	send:{store:value, device:value, intensity:value, temperature:value
+									receive:{status:"ok"}	
+-turn on			GET	"/sensor/temperature/on"	receive:{status:"ok"}
+-turn off			GET	"/sensor/temperature/off"	receive:{status:"ok"}
+
+Temperatura:
+-regulate			POST	"/sensor/light/regulate"	send:{store:value, device:value, temperature:value}
+									receive:{status:"ok"}	
+-turn on			GET	"/sensor/light/on"		receive:{status:"ok"}
+-turn off			GET	"/sensor/light/off"		receive:{status:"ok"}
+
+Persistencia: 
+-save				POST	"/regist/regist"		send:{data_type:value, data:{store:value, movement:1, pressure:[value],
+									      light:{visible:[value], infrared:[value]}, temperature:[value],
+									      cc:value, name:value, }}
+									receive:{status:"ok"}
+-get temperature		POST	"/regist/temperature"		send:{store:value, min:value, max:value}	
+									receive:{time:[value], temperature:[avg_value]}
+-get current temperature	POST	"/regist/current/temperature"	send:{store:value}
+									receive:{sensor:[value], time:value, temperature:[value]}
+-get light			POST	"/regist/light"			send:{store:value, min:value, max:value}	
+									receive:{time:[value], visible:[avg_value], infrared:[avg_value]}
+-get current light		POST	"/regist/current/light"		send:{store:value}	
+									receive:{sensor:[value], time:value, visible:[value], infrared:[value]}
+-get clients			POST	"/regist/clients"		send:{store:value, min:value, max:value}	
+									receive:{times:[value]}
+-get store employees info	POST	"/regist/employees/store"	send:{store:value}	
+									receive:{cc:[value], name:[value]}
+-get all employees info		GET	"/regist/employees/all"		receive:{store:[value], cc:[value], name:[value]}
+-delete an employee		POST	"/regist/employees/unregist"	send:{cc:value}
+									receive:{status:"ok"}
+-get events			POST	"/regist/events"		send:{store:value, min:value, max:value}	
+									receive:{time:[value], info:[value]}
+-get current event (latest)	POST	"/regist/current/events"	send:{store:value}	
+									receive:{time:value, info:value}
+
+------------------ Tabelas da Base de Dados ------------------
+
+Loja:
+-id		long
+-pk(id)
+
+Empregado:
+-id_loja	long
+-cc		long
+-nome		text
+-pk(cc)
+
+Evento:
+-id_loja	long
+-tempo		Timestamp
+-info		text
+-pk(id_loja,tempo)
+
+Luminosidade:
+-id_loja	long
+-sensor 	int 
+-tempo 		Timestamp
+-visivel 	int
+-infravermelho	int
+-pk(id_loja,sensor,tempo)
+
+Temperatura:
+-id_loja	long
+-sensor		int
+-tempo		Timestamp
+-temperatura	real
+-pk(id_loja,sensor,tempo)
+
+Infravermelho:
+-id_loja	long
+-tempo		Timestamp
+-pk(id_loja,tempo)
+
+Pressao:
+-id_loja	long
+-sensor		int
+-tempo		Timestamp
+-valor		int
+-pk(id_loja,sensor,tempo)
+
+-------------------------
+
+use demo;
+
+select * from demo.Loja;
+select * from demo.Empregado;
+select * from demo.Luminosidade;
+select * from demo.Temperatura;
+select * from demo.Infravermelho;
+select * from demo.Pressao;
+select * from demo.Evento;
+
+drop table demo.Temperatura;
+drop table demo.Luminosidade;
+drop table demo.Infravermelho;
+drop table demo.Pressao;
+drop table demo.Evento;
+drop table demo.Empregado;
+drop table demo.Loja;
+
+--------------------------------------------------------------
+

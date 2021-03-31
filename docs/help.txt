@@ -1,0 +1,32 @@
+> create docker image with Dockerfile:
+sudo docker build -t image_name .
+
+> create/run docker container from previously created image:
+sudo docker run -d -p 8080:8080 --name container_name (--network=host) image_name
+
+> start a container:
+sudo docker container start container_name
+(http://localhost:9000 = portainer)
+
+> enter inside a container through the terminal:
+sudo docker exec -i -t container_name /bin/bash
+
+> stop a container:
+sudo docker container stop container_name
+
+> remove a container:
+sudo docker container rm container_name
+
+> remove an image:
+sudo docker image rm image_name
+
+> using mysql demo database with a docker container:
+(create docker image and container with mysql)
+(run container on portainer, login in netbeans (demo_user, demo_pass))
+
+
+> connecting to a vm:
+ssh -p 22 myusername@deti-engsoft-XX.ua.pt	(myusername=filipesnetopires, XX=07,08,09)
+
+> copying a file to a vm:
+scp filename myusername@deti-engsoft-XX.ua.pt:/home/myusername/mydir/filename
