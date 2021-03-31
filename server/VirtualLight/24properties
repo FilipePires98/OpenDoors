@@ -1,0 +1,9 @@
+db-url=localhost:3307/demo
+db-username=demo_user
+db-password=demo_pass
+kafka-broker=1.2.3.4:9092
+mosquitto-broker=localhost:1883
+24persistence=localhost:8081
+tradfri=deti-engsoft-01.ua.pt:8081
+virtual-light=localhost:4000
+virtual-airconditioner=localhost:8000
