@@ -14,11 +14,23 @@ OpenDoors is:
 
 ## Repository Structure:
 
-...
+/application - source code of the android mobile application
+
+/docs - project documentation (presentation, diagrams, ...)
+
+/sensors - python scripts to interact with the supported sensors
+
+/server - source code of the backend (data processing and persistance)
 
 ## Additional Resources:
 
-...
+<img src="https://github.com/FilipePires98/OpenDoors/blob/master/docs/img/P_20181215_181234_1.jpg" width="480px">
+
+Picture of the Raspberry-Pi and example sensors connected to it.
+
+![Architecture](https://github.com/FilipePires98/OpenDoors/blob/master/docs/architecture/Architecture.png)
+
+System architecture diagram.
 
 ## Authors:
 
