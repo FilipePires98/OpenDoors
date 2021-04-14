@@ -1,6 +1,12 @@
 # OpenDoors
 ’Shift your store to the next level’
 
+![](https://img.shields.io/badge/Academical%20Project-Yes-success)
+![](https://img.shields.io/badge/License-Free%20To%20Use-green)
+![](https://img.shields.io/badge/Made%20with-Java-red)
+![](https://img.shields.io/badge/RaspberryPi-v3-blue)
+![](https://img.shields.io/badge/Maintained-No-red)
+
 ## Description
 
 The OpenDoors initiative emerged as a response to the demand for systems that relieve the workload in physical store environments in order to bring greater comfort to both workers and users.
